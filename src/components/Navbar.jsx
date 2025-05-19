@@ -8,6 +8,7 @@ const Navbar = ({ scrollTo }) => {
   const [toggleMenu, setToggleMenu] = useState(true);
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
+    toggle()
   };
   useEffect(() => {
     const ctx = gsap.context(() => {
