@@ -559,7 +559,7 @@ nav .logo {
     font-size: 0.7rem;
   }
   .home-about-button::after {
-    left: -200%;
+    left: -250%;
   }
   .home-footer {
     padding: 1rem;
