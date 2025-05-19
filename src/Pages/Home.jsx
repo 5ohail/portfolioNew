@@ -10,6 +10,8 @@ const Home = () => {
   const homeRef = useRef();
   const infoRef = useRef();
   const aboutRef = useRef();
+  const skillRef = useRef();
+  const contRef = useRef();
   const [prod1, setProd1] = useState(false);
   const [prod2, setProd2] = useState(false);
   const [prod3, setProd3] = useState(false);
@@ -168,7 +170,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar scrollTo={{ aboutRef, contRef, homeRef, infoRef,skillRef }}/>
       <div ref={homeRef} className="home">
         <div className="img-container">
           <img src="/me.jpg" alt="" className="me" />
@@ -230,7 +232,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="home-services">
+      <div ref={skillRef}className="home-services">
         <h2>My Skills</h2>
         <div className="home-services-item">
           <span>01</span>
@@ -274,7 +276,7 @@ const Home = () => {
           <img src="/me.jpg" alt="me" />
         </div>
       </div>
-      <div className="home-services">
+      <div ref={contRef} className="home-services">
         <h2>Let's Connect</h2>
         <div
           className="home-services-item"

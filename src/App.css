@@ -64,9 +64,8 @@ nav .logo{
     z-index: 1;
    
 }
-.toggleMenu .item1 a,.toggleMenu .item2 a{
+.toggleMenu .item1 p,.toggleMenu .item2 p{
     color: #fff;
-    text-decoration: none;
     z-index: 10;
     transition: 0.4s ease;
 }
@@ -85,7 +84,7 @@ nav .logo{
 .toggleMenu .item1:hover::before,.toggleMenu .item2:hover::before{
     left: 0vw;
 }
-.toggleMenu .item1:hover a,.toggleMenu .item2:hover a{
+.toggleMenu .item1:hover p,.toggleMenu .item2:hover p{
     color: #000;
 
 }

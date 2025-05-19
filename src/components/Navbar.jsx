@@ -3,10 +3,12 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({scrollTo}) => {
   const navRef = useRef();
   const [toggleMenu, setToggleMenu] = useState(true);
-
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  };
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (!toggleMenu) {
@@ -49,20 +51,13 @@ const Navbar = () => {
         </>
       ) : (
         <div className="toggleMenu">
-          <img src="/Arrow.svg" alt="arrow" onClick={toggle} />
-          <div className="item1">
-            <Link to="/about">ABOUT</Link>
-          </div>
-          <div className="item2">
-            <Link to="/project">PROJECTS</Link>
-          </div>
-          <div className="item1">
-            <Link to="/contact">CONTACT US</Link>
-          </div>
-          <div className="item2">
-            <Link to="/services">SERVICES</Link>
-          </div>
-        </div>
+  <img src="/Arrow.svg" alt="arrow" onClick={toggle} />
+  <div className="item1" onClick={() => scrollToSection(scrollTo.aboutRef)}><p>ABOUT</p></div>
+  <div className="item2"onClick={()=>scrollToSection(scrollTo.infoRef)}><p>PROJECTS</p></div>
+  <div className="item1" onClick={() => scrollToSection(scrollTo.contRef)}><p>CONTACT US</p></div>
+  <div className="item2" onClick={()=> scrollToSection(scrollTo.skillRef)}><p>SKILLS</p></div>
+</div>
+
       )}
     </nav>
   );
