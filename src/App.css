@@ -13,6 +13,7 @@ html,body{
     width: 100%;
     background-color: #000;
     color: #fff;
+    overflow-x: hidden;
 }
 nav {
   display: flex;
@@ -20,6 +21,8 @@ nav {
   align-items: center;
   padding: 1rem; /* important */
   overflow-x: hidden;
+  width: 100vw;
+  
   z-index: 99;
 }
 
@@ -103,6 +106,7 @@ nav .logo{
    z-index: 1;
    position: relative;
    height: 85vh;
+   width: 100vw;
 }
 
 .home h4{
@@ -304,7 +308,7 @@ nav .logo{
     width: 15rem;
     background-color: #fff;
     top: 0;
-    left: 100%;
+    left: -125%;
     transition: 0.4s linear;
     z-index: -1;
 }
@@ -342,4 +346,62 @@ nav .logo{
 }
 #arrow3{
     transform: translateX(34vw);
+}
+
+.home-Faqs{
+    margin: 6rem 2rem;
+    display: flex;
+    align-items: top;
+    justify-content: left;
+    gap: 4rem;
+}
+.home-Faqs h1{
+    font-size: 4rem;
+    font-weight: lighter;
+    line-height: 3.9rem;
+    margin: 0 3rem;
+
+}
+.home-Faqs .home-Faqs-qContainer h3{
+    font-size: 1.2rem;
+    font-weight: lighter;
+}
+.home-Faqs .home-Faqs-qContainer{
+    padding: 1.4rem 0.8rem;
+    border-bottom: 1px solid #fff;
+     cursor: pointer;
+}
+.home-Faqs .home-faq-container{
+    display: flex;
+    justify-content: space-between;
+    width: 65vw;
+}
+.home-Faqs-qContainer p{
+    margin-top: 1rem;
+    color: #878787;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.faq-answer.show {
+  max-height: 200px; /* Adjust based on your content */
+  opacity: 1;
+}
+.sign{
+    font-size: 1.5rem !important;
+  font-weight: bold;
+}
+.home-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+}
+.home-footer p{
+    color: #878787;
+    font-size: 0.9rem;
 }

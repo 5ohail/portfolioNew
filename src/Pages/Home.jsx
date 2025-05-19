@@ -14,9 +14,13 @@ const Home = () => {
   const [prod2, setProd2] = useState(false);
   const [prod3, setProd3] = useState(false);
   const [prod4, setProd4] = useState(false);
-  const redirectTo = (url) =>{
-    window.location.href = url
-  }
+  const [q1, setQ1] = useState(false);
+  const [q2, setQ2] = useState(false);
+  const [q3, setQ3] = useState(false);
+  const [q4, setQ4] = useState(false);
+  const redirectTo = (url) => {
+    window.location.href = url;
+  };
   useGSAP(
     () => {
       gsap.registerPlugin(SplitText);
@@ -48,65 +52,65 @@ const Home = () => {
     { scope: homeRef }
   );
   useGSAP(
-  () => {
-    gsap.registerPlugin(SplitText, ScrollTrigger);
+    () => {
+      gsap.registerPlugin(SplitText, ScrollTrigger);
 
-    const tags = aboutRef.current.querySelector(".home-about-resume div");
+      const tags = aboutRef.current.querySelector(".home-about-resume div");
 
-    const split = new SplitText(aboutRef.current.querySelector("p"), {
-      type: "lines",
-      linesClass: "line-wrapper",
-      mask: "lines",
-    });
-
-    gsap.from(split.lines, {
-      y: 40,
-      opacity: 0,
-      duration: 1,
-      ease: "power4.out",
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: aboutRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-        once: true,
-      },
-    });
-
-    gsap.from(".home-about-item img", {
-      opacity: 0,
-      scale: 0,
-      rotate: "45deg",
-      scrollTrigger: {
-        trigger: aboutRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-        once: true,
-      },
-    });
-
-    const mouseEnterAnim = () => {
-      gsap.to(".home-about-resume h4", {
-        yPercent: -190, // use a number, not "2rem"
+      const split = new SplitText(aboutRef.current.querySelector("p"), {
+        type: "lines",
+        linesClass: "line-wrapper",
+        mask: "lines",
       });
-    };
-    const mouseLeaveanim = () =>{
-      gsap.to(".home-about-resume h4", {
-        yPercent: 0, // use a number, not "2rem"
-      });
-    }
 
-    // ✅ Correct event name and location
-    tags.addEventListener("mouseenter", mouseEnterAnim);
-    tags.addEventListener("mouseleave", mouseLeaveanim)
-    // 🔄 Cleanup
-    return () => {
-      tags.removeEventListener("mouseenter", mouseEnterAnim);
-      tags.removeEventListener("mouseleave",mouseLeaveanim)
-    };
-  },
-  { scope: aboutRef }
-);
+      gsap.from(split.lines, {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power4.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+          once: true,
+        },
+      });
+
+      gsap.from(".home-about-item img", {
+        opacity: 0,
+        scale: 0,
+        rotate: "45deg",
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+          once: true,
+        },
+      });
+
+      const mouseEnterAnim = () => {
+        gsap.to(".home-about-resume h4", {
+          yPercent: -190, // use a number, not "2rem"
+        });
+      };
+      const mouseLeaveanim = () => {
+        gsap.to(".home-about-resume h4", {
+          yPercent: 0, // use a number, not "2rem"
+        });
+      };
+
+      // ✅ Correct event name and location
+      tags.addEventListener("mouseenter", mouseEnterAnim);
+      tags.addEventListener("mouseleave", mouseLeaveanim);
+      // 🔄 Cleanup
+      return () => {
+        tags.removeEventListener("mouseenter", mouseEnterAnim);
+        tags.removeEventListener("mouseleave", mouseLeaveanim);
+      };
+    },
+    { scope: aboutRef }
+  );
 
   useEffect(() => {
     const img1 = infoRef.current.querySelector("#img1");
@@ -227,7 +231,7 @@ const Home = () => {
         </div>
       </div>
       <div className="home-services">
-        <h2>My Services</h2>
+        <h2>My Skills</h2>
         <div className="home-services-item">
           <span>01</span>
           <h3>Website Design</h3>
@@ -246,11 +250,11 @@ const Home = () => {
           <div className="home-about-text">
             <h2>About Me</h2>
             <p>
-              I’m Sohail Ansari, a Computer Science student at Rajasthan
-              Technical University and a passionate web developer. I specialize
-              in building modern, responsive web applications using React and
-              Firebase. I take pride in writing clean, efficient code and
-              designing user-friendly interfaces that provide seamless and
+              I’m Sohail Ansari, a Computer Science student at Geetanjali
+              Institute Of Technical Studies and a passionate web developer. I
+              specialize in building modern, responsive web applications using
+              React and Firebase. I take pride in writing clean, efficient code
+              and designing user-friendly interfaces that provide seamless and
               engaging experiences. Constantly learning and improving, I enjoy
               tackling new challenges and turning ideas into functional,
               polished websites.
@@ -272,26 +276,101 @@ const Home = () => {
       </div>
       <div className="home-services">
         <h2>Let's Connect</h2>
-        <div className="home-services-item" onClick={()=>redirectTo("https://instagram.com/sohx1l")}>
+        <div
+          className="home-services-item"
+          onClick={() => redirectTo("https://instagram.com/sohx1l")}
+        >
           <span>01</span>
           <h3>INSTAGRAM</h3>
           <span className="arrow" id="arrow1">
             &#8594;
           </span>
         </div>
-        <div className="home-services-item" onClick={()=>redirectTo("https://linkedin.com/in/sohailansari163")}>
+        <div
+          className="home-services-item"
+          onClick={() => redirectTo("https://linkedin.com/in/sohailansari163")}
+        >
           <span>02</span>
           <h3>LINKEDIN</h3>
-          <span className="arrow" id="arrow2">&#8594;</span>
+          <span className="arrow" id="arrow2">
+            &#8594;
+          </span>
         </div>
-        <div className="home-services-item" onClick={()=>redirectTo("https://github.com/5ohail")}>
+        <div
+          className="home-services-item"
+          onClick={() => redirectTo("https://github.com/5ohail")}
+        >
           <span>03</span>
           <h3>GITHUB</h3>
-          <span className="arrow" id="arrow3">&#8594;</span>
+          <span className="arrow" id="arrow3">
+            &#8594;
+          </span>
         </div>
-        
       </div>
-      
+      <div className="home-Faqs">
+        <h1>
+          Common
+          <br />
+          Questions
+        </h1>
+        <div className="home-Faqs-questions">
+          <div className="home-Faqs-qContainer" onClick={() => setQ1(!q1)}>
+            <div className="home-faq-container">
+              <h3>What Technologies have you learned so far?</h3>
+              <h3 className="sign">{q1 ? "-" : "+"}</h3>
+            </div>
+            <div className={`faq-answer ${q1 ? "show" : ""}`}>
+              <p>
+                I've learned HTML, CSS, JavaScript, React, Node.js, Firebase,
+                Git, and basics of C, C++ & Java
+              </p>
+            </div>
+          </div>
+
+          <div className="home-Faqs-qContainer" onClick={() => setQ2(!q2)}>
+            <div className="home-faq-container">
+              <h3>Did you build this Portfolio Website from Scratch?</h3>
+              <h3 className="sign">{q2 ? "-" : "+"}</h3>
+            </div>
+            <div className={`faq-answer ${q2 ? "show" : ""}`}>
+              <p>
+                Yes, I designed and developed it from scratch using React and
+                Vite.
+              </p>
+            </div>
+          </div>
+
+          <div className="home-Faqs-qContainer" onClick={() => setQ3(!q3)}>
+            <div className="home-faq-container">
+              <h3>What kind of Projects are you currently working on?</h3>
+              <h3 className="sign">{q3 ? "-" : "+"}</h3>
+            </div>
+            <div className={`faq-answer ${q3 ? "show" : ""}`}>
+              <p>
+                I'm working on a carbon footprint calculator, an IoT data
+                dashboard, and some small full-stack apps.
+              </p>
+            </div>
+          </div>
+
+          <div className="home-Faqs-qContainer" onClick={() => setQ4(!q4)}>
+            <div className="home-faq-container">
+              <h3>How are you planning to grow your Skills in Future?</h3>
+              <h3 className="sign">{q4 ? "-" : "+"}</h3>
+            </div>
+            <div className={`faq-answer ${q4 ? "show" : ""}`}>
+              <p>
+                By building more projects, exploring AI and backend development,
+                and participating in coding contests and open-source.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="home-footer">
+        <div><p>sohailansarisa318@gmail.com</p></div>
+        <div><p>&#xA9; 2025 Sohail Ansari. All rights reserved.</p></div>
+      </div>
     </>
   );
 };
