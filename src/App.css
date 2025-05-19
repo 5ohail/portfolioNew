@@ -14,6 +14,10 @@ html,body{
     background-color: #000;
     color: #fff;
     overflow-x: hidden;
+    scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 nav {
   display: flex;
