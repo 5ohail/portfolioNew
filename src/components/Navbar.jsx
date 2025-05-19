@@ -8,6 +8,7 @@ const Navbar = ({ scrollTo }) => {
   const [toggleMenu, setToggleMenu] = useState(true);
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
+    toggle();
   };
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -54,7 +55,7 @@ const Navbar = ({ scrollTo }) => {
           <img src="/Arrow.svg" alt="arrow" onClick={toggle} />
           <div
             className="item1"
-            onClick={() => scrollToSection(scrollTo.aboutRef)}
+            onClick={() => {scrollToSection(scrollTo.aboutRef)}}
           >
             <p>ABOUT</p>
           </div>
