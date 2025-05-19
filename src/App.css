@@ -1,0 +1,345 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif
+}
+*::selection{
+    background-color: #fff;
+    color: black;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem; /* important */
+  overflow-x: hidden;
+  z-index: 99;
+}
+
+nav .logo{
+    font-size: 1.4rem;
+    margin: 1rem 1.5rem;
+}
+.menu img{
+    border: 1px solid #fff;
+    border-radius: 50%;
+    padding: 0.2rem;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin: 1rem 1.5rem;
+    rotate: 0deg;
+    transition: 0.5s ease;
+}
+.menu:hover img{
+    rotate: 180deg;
+}
+.toggleMenu{
+    width: 100vw;
+    font-size: 4rem;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 99;
+    background-color: #000;
+}
+
+.toggleMenu .item1 ,.toggleMenu .item2 {
+    border-bottom: 1px solid #fff;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: 0.5s ease;
+    overflow: hidden;
+    position: relative;
+    transition: 0.8s ease;
+    z-index: 1;
+   
+}
+.toggleMenu .item1 a,.toggleMenu .item2 a{
+    color: #fff;
+    text-decoration: none;
+    z-index: 10;
+    transition: 0.4s ease;
+}
+.toggleMenu .item1::before ,.toggleMenu .item2::before{
+    content: "";
+    position: absolute;
+    height: 30vh;
+    width: 100vw;
+    background-color: #fff;
+    top: 0;
+    left: 100vw;
+    transition: 0.4s ease;
+    transform-origin: right;
+    z-index: -1;
+}
+.toggleMenu .item1:hover::before,.toggleMenu .item2:hover::before{
+    left: 0vw;
+}
+.toggleMenu .item1:hover a,.toggleMenu .item2:hover a{
+    color: #000;
+
+}
+.toggleMenu img{
+    border: 1px solid #fff;
+    border-radius: 50%;
+    height: 10vh;
+    rotate: -45deg;
+    margin: 1rem 1rem 0 1rem;
+    transition: 0.4s ease;
+    cursor: pointer;
+    
+}
+.toggleMenu img:hover{
+    rotate: -135deg;
+}
+.home{
+   z-index: 1;
+   position: relative;
+   height: 85vh;
+}
+
+.home h4{
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    line-height: 1.7rem;
+    font-weight: lighter;
+    position: absolute;
+    bottom: 11rem;
+    left: 2rem;
+     z-index: 1;
+}
+.home h1{
+    font-size: 8rem;
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    letter-spacing: 2px;
+     z-index: 1;
+}
+.img-container{
+    height: 40vh;
+    width: 19vw;
+    position: absolute;
+    right: 3rem;
+    top: 6rem;
+    z-index: 1;
+    overflow: hidden;
+    
+     
+}
+.img-container img{
+    height: 40vh;
+    width: 19vw;
+    object-fit: cover;
+    object-position: top center;
+    transition: 0.4s ease;
+    
+}
+.img-container img:hover{
+    height: 42vh;
+    width: 21vw;
+}
+.home-information {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    gap: 3rem;
+    margin: 1rem 0;
+}
+.home-information .img-card{
+    display: flex;
+    justify-content:center;
+    align-items: top;
+    gap: 4rem;
+}
+.home-information .img-card h3{
+    font-weight: lighter;
+    font-size: 1.4rem;
+    margin: 0.4rem 0;
+}
+.home-information .img-card .img{
+    height: 55vh;
+    width: 45vw;
+    background-color: #fff;
+    cursor: pointer;
+    overflow: hidden;
+}
+.home-information .img-card .img img{
+    height: 55vh;
+    width: 45vw;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.2s ease-in-out;
+}
+.home-information .img-card .img:hover img{
+    height: 57vh;
+    width: 47vw;
+}
+.img-card-child{
+    height: 47vh;
+    background-color: #000;
+    margin: 2rem 0;
+}
+
+.home-services{
+    overflow-x: hidden;
+}
+.home-services h2{
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 4rem 3rem 2rem 3rem;
+}
+.home-services-item{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 20vw;
+    border-bottom: 1px solid #696969;
+    font-size: 1.3rem;
+    margin: 0 2rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    transition: 0.9s ease;
+}
+.home-services-item span{
+    color: #565656;
+    margin: 1rem 2rem;
+}
+.home-services-item h3{
+    font-weight: lighter;
+}
+.home-services-item::before{
+    content: "";
+    position: absolute;
+    width: 100vw;
+    left: 100vw;
+    height: 10vh;
+    background-color: #fff;
+    z-index: -1;
+    transition: 0.7s ease;
+    
+}
+.home-services-item:hover::before{
+    left: 0;
+}
+.home-services-item:hover{
+    color: #000;
+}
+.home-services-item .arrow{
+    transform: translateX( 30vw);
+    color: #fff;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    transition: 0.5s ease;
+}
+.home-services-item:hover .arrow{
+    color: #565656;
+}
+.home-services-item #arrow1{
+    transform: translateX( 31vw);
+
+}
+.home-about h2{
+    font-size: 3rem;
+    font-weight: 400;
+}
+.home-about-item{
+     display: flex;
+    justify-content: space-between;
+    align-items: top;
+    margin: 3rem;
+}
+.home-about-item img{
+    height: 65vh;
+    width: 65vh;
+    object-fit: cover;
+    
+}
+.home-about-text{
+    width: 45vw;
+    margin-top: 2vh;
+}
+.home-about-text .line-wrapper{
+ height: 1.5rem;
+ overflow: hidden;
+ display: block;
+}
+.home-about-text h2{
+    margin: 1rem 0;
+}
+.home-about-text p{
+    font-weight: lighter;
+    font-size: 1.3rem;
+}
+.home-about-button{
+    outline: none;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 0.5rem 1rem;
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: 0.4s linear;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+.home-about-button::after{
+    content: "";
+    position: absolute;
+    height: 5rem;
+    width: 15rem;
+    background-color: #fff;
+    top: 0;
+    left: 100%;
+    transition: 0.4s linear;
+    z-index: -1;
+}
+
+.home-about-button:hover::after{
+    left:0
+}
+.home-about-button:hover{
+    color: #000;
+}
+.home-about-resume{
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+.home-about-resume div{
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    justify-content: left;
+    height: 1.6rem;
+    gap: 1rem;
+    overflow-y: hidden;
+    margin-top: 0.8rem;
+    transform: translateX(-3rem);
+
+}
+.home-about-resume div h4{
+    font-weight: bolder;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+#arrow2{
+    transform: translateX(32.8vw);
+}
+#arrow3{
+    transform: translateX(34vw);
+}
