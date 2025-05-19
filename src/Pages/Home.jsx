@@ -23,36 +23,59 @@ const Home = () => {
   const redirectTo = (url) => {
     window.location.href = url;
   };
-  useGSAP(
-    () => {
-      gsap.registerPlugin(SplitText);
+  useGSAP(() => {
+  gsap.registerPlugin(SplitText);
 
-      const split = new SplitText(homeRef.current.querySelector(".name"), {
-        type: "chars",
-      });
+  const nameEl = homeRef.current?.querySelector(".name");
+  const follower = homeRef.current?.querySelector(".follower");
+  console.log(follower)
 
-      const tl = gsap.timeline();
-      tl.from(".img-container", {
-        opacity: 0,
-        scale: 0.8,
-        rotate: "45deg",
-        duration: 1.1,
-      })
-        .from(split.chars, {
-          y: "40px",
-          opacity: 0,
-          stagger: {
-            each: 0.04,
-          },
-          ease: "power4.out",
-        })
-        .from(".tagline", {
-          x: "-100px",
-          opacity: 0,
-        });
-    },
-    { scope: homeRef }
-  );
+  const split = new SplitText(nameEl, { type: "chars" });
+
+  const mouseEnter = (e) => {
+    gsap.to(follower, {
+      scale: 1,
+      opacity: 0.4,
+      x: e.clientX - 30,
+      y: e.clientY -30,
+    });
+  };
+
+  const mouseLeave = () => {
+    gsap.to(follower, {
+      scale: 0,
+      opacity: 0,
+    });
+  };
+
+  homeRef.current.addEventListener("mouseleave", mouseLeave);
+  homeRef.current.addEventListener("mousemove", mouseEnter);
+
+  const tl = gsap.timeline();
+  tl.from(".img-container", {
+    opacity: 0,
+    scale: 0.8,
+    rotate: "45deg",
+    duration: 1.1,
+  })
+    .from(split.chars, {
+      y: "40px",
+      opacity: 0,
+      stagger: 0.04,
+      ease: "power4.out",
+    })
+    .from(".tagline", {
+      x: "-100px",
+      opacity: 0,
+    });
+
+  return () => {
+    homeRef.current.removeEventListener("mousemove", mouseEnter);
+    homeRef.current.removeEventListener("mouseleave", mouseLeave);
+    split.revert();
+  };
+}, { scope: homeRef });
+
   useGSAP(
     () => {
       gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -181,6 +204,7 @@ const Home = () => {
           Creating Website Design
         </h4>
         <h1 className="name">SOHAIL</h1>
+        <div className="follower">Scroll &#8595;</div>
       </div>
       <div ref={infoRef} className="home-information">
         <div className="img-card">

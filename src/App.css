@@ -408,3 +408,22 @@ nav .logo{
     color: #878787;
     font-size: 0.9rem;
 }
+.follower{
+    height: 5rem;
+    width: 5rem;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    opacity: 0.4;
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    scale: 0;
+    pointer-events: none;
+}
