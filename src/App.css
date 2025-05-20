@@ -270,6 +270,7 @@ nav .logo {
   height: 65vh;
   width: 65vh;
   object-fit: cover;
+  transform-origin: center center;
 }
 .home-about-text {
   width: 45vw;
@@ -592,5 +593,177 @@ nav .logo {
   .faq-answer p{
     font-size: 0.7rem;
     margin-top: 0.5rem;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+  nav .logo{
+    font-size: 1rem;
+    margin: 0.8rem 1.05rem;
+  }
+  .menu img{
+    padding: 0.3rem;
+    height: 2rem;
+    width: 2rem;
+    margin: 0.8rem 1.05rem;
+  }
+  .img-container {
+    height: 45vh;
+    width: 55vw;
+    right: 2rem;
+  }
+  .img-container img {
+    height: 45vh;
+    width: 55vw;
+  }
+  .img-container img:hover {
+    height: 46vh;
+    width: 60vw;
+  }
+  .home h4 {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    line-height: 1.1rem;
+    bottom: 9rem;
+    left: 2rem;
+  }
+  .home h1 {
+    font-size: 6rem;
+    bottom: 2rem;
+    left: 2rem;
+    letter-spacing: 1px;
+  }
+  .home-information {
+    gap: 0.2;
+    margin: 0.3rem 0;
+    padding: 0.6rem 0;
+    overflow-y: hidden;
+    height: 100vh;
+  }
+  .home-information .img-card {
+    gap: 1.6rem;
+  }
+  .home-information .img-card h3 {
+    font-size: 1rem;
+    margin: 0.1rem 0;
+  }
+  .prod1,.prod2{
+    transform: translate(1rem, -2rem);
+  }
+  .prod3,
+  .prod4 {
+    transform: translate(1rem,-13vh);
+  }
+  .home-services h2 {
+    font-size: 2rem;
+    margin: 2rem;
+  }
+  .home-services-item {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 20vw;
+  border-bottom: 1px solid #696969;
+  font-size: 1.3rem;
+  margin: 0 2rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+  transition: 0.9s ease;
+}
+.home-services-item span {
+  color: #565656;
+  margin: 1rem 2rem;
+}
+.home-services-item h3 {
+  font-weight: lighter;
+}
+#arrow2{
+  transform: translateX(11.5vw);
+}
+#arrow3{
+  transform: translateX(13.5vw);
+}
+.home-services-item::before {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  left: 100vw;
+  height: 10vh;
+  background-color: #fff;
+  z-index: -1;
+  transition: 0.7s ease;
+}
+.home-services-item:hover::before {
+  left: 0;
+}
+.home-services-item:hover {
+  color: #000;
+}
+.home-services-item .arrow {
+  transform: translateX(5vw);
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: bolder;
+  transition: 0.5s ease;
+}
+.home-services-item #arrow1 {
+  transform: translateX(8vw);
+}
+.home-about-text h2 {
+    font-size: 1.5rem;
+  }
+  .home-about-text p {
+    font-size: 1.2rem;
+  }
+  .home-about-text .line-wrapper {
+    height: 2rem;
+  }
+  .home-about-text{
+    padding: 1rem;
+    width: 80vw;
+  }
+  .home-about-item {
+    margin: 1.4rem 0.4rem;
+    flex-direction: column;
+  }
+  .home-about-item img {
+    height: 50vh;
+    width: 85vw;
+    margin-left: 3.2rem;
+  }
+  .home-about-text {
+    width: 100vw;
+    margin-top: 2vh;
+  }
+  .home-about-button {
+    margin: 1rem 0;
+    font-size: 1rem;
+  }
+  .home-about-button::after {
+    left: -250%;
+  }
+  .home-Faqs h1 {
+    font-size: 2rem;
+    line-height: 1.85rem;
+    margin: 0 ;
+  }
+  .home-Faqs{
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .home-faq-container{
+    align-items: center;
+  }
+  .home-Faqs-qContainer .home-faq-container h3{
+    font-size: 1rem;
+  }
+  .sign{
+    font-size: 1rem !important;
+    transform: translateX(10rem);
+  }
+  .faq-answer p{
+    font-size: 1rem;
+    margin-top: 0.7rem;
   }
 }

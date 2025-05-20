@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link, redirect } from "react-router-dom";
 import { Power4 } from "gsap/gsap-core";
+gsap.registerPlugin(SplitText, ScrollTrigger);
 const Home = () => {
   const homeRef = useRef();
   const infoRef = useRef();
@@ -23,115 +24,119 @@ const Home = () => {
   const redirectTo = (url) => {
     window.location.href = url;
   };
-  useGSAP(() => {
-  gsap.registerPlugin(SplitText);
+  useGSAP(
+    () => {
+      gsap.registerPlugin(SplitText);
 
-  const nameEl = homeRef.current?.querySelector(".name");
-  const follower = homeRef.current?.querySelector(".follower");
-  console.log(follower)
+      const nameEl = homeRef.current?.querySelector(".name");
+      const follower = homeRef.current?.querySelector(".follower");
+      console.log(follower);
 
-  const split = new SplitText(nameEl, { type: "chars" });
+      const split = new SplitText(nameEl, { type: "chars" });
 
-  const mouseEnter = (e) => {
-    gsap.to(follower, {
-      scale: 1,
-      opacity: 0.4,
-      x: e.clientX - 30,
-      y: e.clientY -30,
-    });
-  };
+      const mouseEnter = (e) => {
+        gsap.to(follower, {
+          scale: 1,
+          opacity: 0.4,
+          x: e.clientX - 30,
+          y: e.clientY - 30,
+        });
+      };
 
-  const mouseLeave = () => {
-    gsap.to(follower, {
-      scale: 0,
-      opacity: 0,
-    });
-  };
+      const mouseLeave = () => {
+        gsap.to(follower, {
+          scale: 0,
+          opacity: 0,
+        });
+      };
 
-  homeRef.current.addEventListener("mouseleave", mouseLeave);
-  homeRef.current.addEventListener("mousemove", mouseEnter);
+      homeRef.current.addEventListener("mouseleave", mouseLeave);
+      homeRef.current.addEventListener("mousemove", mouseEnter);
 
-  const tl = gsap.timeline();
-  tl.from(".img-container", {
-    opacity: 0,
-    scale: 0.8,
-    rotate: "45deg",
-    duration: 1.1,
-  })
-    .from(split.chars, {
-      y: "40px",
-      opacity: 0,
-      stagger: 0.04,
-      ease: "power4.out",
-    })
-    .from(".tagline", {
-      x: "-100px",
-      opacity: 0,
-    });
+      const tl = gsap.timeline();
+      tl.from(".img-container", {
+        opacity: 0,
+        scale: 0.8,
+        rotate: "45deg",
+        duration: 1.1,
+      })
+        .from(split.chars, {
+          y: "40px",
+          opacity: 0,
+          stagger: 0.04,
+          ease: "power4.out",
+        })
+        .from(".tagline", {
+          x: "-100px",
+          opacity: 0,
+        });
 
-  return () => {
-    homeRef.current.removeEventListener("mousemove", mouseEnter);
-    homeRef.current.removeEventListener("mouseleave", mouseLeave);
-    split.revert();
-  };
-}, { scope: homeRef });
+      return () => {
+        homeRef.current.removeEventListener("mousemove", mouseEnter);
+        homeRef.current.removeEventListener("mouseleave", mouseLeave);
+        split.revert();
+      };
+    },
+    { scope: homeRef }
+  );
 
   useGSAP(
     () => {
-      gsap.registerPlugin(SplitText, ScrollTrigger);
+      console.log(aboutRef.current)
+      if (!aboutRef.current) return;
 
       const tags = aboutRef.current.querySelector(".home-about-resume div");
+      const paragraph = aboutRef.current.querySelector("p");
 
-      const split = new SplitText(aboutRef.current.querySelector("p"), {
+      if (!tags || !paragraph) return;
+
+      const split = new SplitText(paragraph, {
         type: "lines",
         linesClass: "line-wrapper",
         mask: "lines",
       });
 
+
+      gsap.from(aboutRef.current.querySelector(".home-about-item img"), {
+        opacity: 0.4,
+        scale:0.4,
+        rotate: 45,
+        duration:1,
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      })
       gsap.from(split.lines, {
         y: 40,
         opacity: 0,
-        duration: 1,
         ease: "power4.out",
         stagger: 0.1,
+        duration: 0.4,
         scrollTrigger: {
           trigger: aboutRef.current,
           start: "top 80%",
           toggleActions: "play none none reverse",
-          once: true,
-        },
-      });
-
-      gsap.from(".home-about-item img", {
-        opacity: 0,
-        scale: 0,
-        rotate: "45deg",
-        scrollTrigger: {
-          trigger: aboutRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-          once: true,
         },
       });
 
       const mouseEnterAnim = () => {
-        gsap.to(".home-about-resume h4", {
-          yPercent: -190, // use a number, not "2rem"
-        });
-      };
-      const mouseLeaveanim = () => {
-        gsap.to(".home-about-resume h4", {
-          yPercent: 0, // use a number, not "2rem"
-        });
+        gsap.to(tags.querySelector("h4"), { yPercent: -190 });
       };
 
-      // ✅ Correct event name and location
+      const mouseLeaveAnim = () => {
+        gsap.to(tags.querySelector("h4"), { yPercent: 0 });
+      };
+
       tags.addEventListener("mouseenter", mouseEnterAnim);
-      tags.addEventListener("mouseleave", mouseLeaveanim);
-      // 🔄 Cleanup
+      tags.addEventListener("mouseleave", mouseLeaveAnim);
+
       return () => {
         tags.removeEventListener("mouseenter", mouseEnterAnim);
-        tags.removeEventListener("mouseleave", mouseLeaveanim);
+        tags.removeEventListener("mouseleave", mouseLeaveAnim);
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+        split.revert();
       };
     },
     { scope: aboutRef }
@@ -193,7 +198,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar scrollTo={{ aboutRef, contRef, homeRef, infoRef,skillRef }}/>
+      <Navbar scrollTo={{ aboutRef, contRef, homeRef, infoRef, skillRef }} />
       <div ref={homeRef} className="home">
         <div className="img-container">
           <img src="/me.jpg" alt="" className="me" />
@@ -256,7 +261,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div ref={skillRef}className="home-services">
+      <div ref={skillRef} className="home-services">
         <h2>My Skills</h2>
         <div className="home-services-item">
           <span>01</span>
@@ -268,7 +273,9 @@ const Home = () => {
         <div className="home-services-item">
           <span>02</span>
           <h3>Fullstack Website</h3>
-          <span className="arrow" id="arrow5">&#8594;</span>
+          <span className="arrow" id="arrow5">
+            &#8594;
+          </span>
         </div>
       </div>
       <div ref={aboutRef} className="home-about">
@@ -373,29 +380,34 @@ const Home = () => {
             </div>
             <div className={`faq-answer ${q3 ? "show" : ""}`}>
               <p>
-                I'm working on a carbon footprint calculator, an IoT data
-                dashboard, and some small full-stack apps.
+                I'm currently working on a Carbon Footprint Tracker, a
+                Confession Platform, and exploring Generative AI and IoT-based
+                applications.
               </p>
             </div>
           </div>
 
           <div className="home-Faqs-qContainer" onClick={() => setQ4(!q4)}>
             <div className="home-faq-container">
-              <h3>How are you planning to grow your Skills in Future?</h3>
+              <h3>Are you open to freelance or collaborative work?</h3>
               <h3 className="sign">{q4 ? "-" : "+"}</h3>
             </div>
             <div className={`faq-answer ${q4 ? "show" : ""}`}>
               <p>
-                By building more projects, exploring AI and backend development,
-                and participating in coding contests and open-source.
+                Absolutely! I’m open to freelance gigs, internships, and
+                collaborative side projects. Feel free to reach out!
               </p>
             </div>
           </div>
         </div>
       </div>
       <div className="home-footer">
-        <div><p>sohailansarisa318@gmail.com</p></div>
-        <div><p>&#xA9; 2025 Sohail Ansari. All rights reserved.</p></div>
+        <div>
+          <p>sohailansarisa318@gmail.com</p>
+        </div>
+        <div>
+          <p>&#xA9; 2025 Sohail Ansari. All rights reserved.</p>
+        </div>
       </div>
     </>
   );

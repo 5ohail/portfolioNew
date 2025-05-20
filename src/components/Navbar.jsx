@@ -1,7 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { Link } from "react-router-dom";
 
 const Navbar = ({ scrollTo }) => {
   const navRef = useRef();
