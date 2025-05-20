@@ -86,7 +86,6 @@ const Home = () => {
       if (!aboutRef.current) return;
 
       const tags = aboutRef.current.querySelector(".home-about-resume div");
-      console.log(tags);
       const paragraph = aboutRef.current.querySelector("p");
 
       if (!tags || !paragraph) return;
