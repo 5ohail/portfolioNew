@@ -82,10 +82,11 @@ const Home = () => {
 
   useGSAP(
     () => {
-      console.log(aboutRef.current)
+      console.log(aboutRef.current);
       if (!aboutRef.current) return;
 
       const tags = aboutRef.current.querySelector(".home-about-resume div");
+      console.log(tags);
       const paragraph = aboutRef.current.querySelector("p");
 
       if (!tags || !paragraph) return;
@@ -96,18 +97,17 @@ const Home = () => {
         mask: "lines",
       });
 
-
       gsap.from(aboutRef.current.querySelector(".home-about-item img"), {
         opacity: 0.4,
-        scale:0.4,
+        scale: 0.4,
         rotate: 45,
-        duration:1,
+        duration: 1,
         scrollTrigger: {
           trigger: aboutRef.current,
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      })
+      });
       gsap.from(split.lines, {
         y: 40,
         opacity: 0,
@@ -122,19 +122,24 @@ const Home = () => {
       });
 
       const mouseEnterAnim = () => {
-        gsap.to(tags.querySelector("h4"), { yPercent: -190 });
+        gsap.to(tags.querySelectorAll(".home-about-resume h4"), {
+          yPercent: -200,
+        });
       };
 
       const mouseLeaveAnim = () => {
-        gsap.to(tags.querySelector("h4"), { yPercent: 0 });
+        gsap.to(tags.querySelectorAll(".home-about-resume h4"), {
+          yPercent: 0,
+        });
       };
 
       tags.addEventListener("mouseenter", mouseEnterAnim);
       tags.addEventListener("mouseleave", mouseLeaveAnim);
 
       return () => {
-        tags.removeEventListener("mouseenter", mouseEnterAnim);
-        tags.removeEventListener("mouseleave", mouseLeaveAnim);
+        
+          tags.removeEventListener("mouseenter", mouseEnterAnim);
+          tags.removeEventListener("mouseleave", mouseLeaveAnim);
         ScrollTrigger.getAll().forEach((t) => t.kill());
         split.revert();
       };
