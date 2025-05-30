@@ -18,7 +18,7 @@ const Scene = () => {
   const dimensions = aspect >= 1 ? 1.3 : aspect * 1.15
   return (
     <group>
-      <mesh ref={cyl} rotation={[0.1, 0, 0.4]}>
+      <mesh ref={cyl} rotation={[0.1, 0, 0.4]} position={[0, 0.1, 0]}>
         <cylinderGeometry args={[dimensions, dimensions, dimensions, 60, 60, true]} />
         <meshBasicMaterial
           map={tex}
