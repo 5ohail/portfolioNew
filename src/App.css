@@ -156,46 +156,15 @@ nav .logo {
   width: 21vw;
 }
 .home-information {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  margin: 1rem 0;
+  position: relative;
 }
-.home-information .img-card {
-  display: flex;
-  justify-content: center;
-  align-items: top;
-  gap: 4rem;
-}
-.home-information .img-card h3 {
-  font-weight: lighter;
-  font-size: 1.4rem;
-  margin: 0.4rem 0;
-}
-.home-information .img-card .img {
-  height: 55vh;
-  width: 45vw;
-  background-color: #fff;
-  cursor: pointer;
-  overflow: hidden;
-}
-.home-information .img-card .img img {
-  height: 55vh;
-  width: 45vw;
-  object-fit: cover;
-  object-position: center;
-  transition: 0.2s ease-in-out;
-}
-.home-information .img-card .img:hover img {
-  height: 57vh;
-  width: 47vw;
-}
-.img-card-child {
-  height: 47vh;
-  background-color: #000;
-  margin: 2rem 0;
+.home-information h2{
+  
+  position:absolute;
+  top: 50%;
+  left: 43%;
+  transform: translate(-50%, -50%);
+  font-size: 20rem;
 }
 
 .home-services {
@@ -425,6 +394,17 @@ nav .logo {
   scale: 0;
   pointer-events: none;
 }
+.cylinder {
+  width: 100%;
+  height: 100vh; /* or any height you want */
+  overflow: hidden;
+}
+.cylinder canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
 
 @media (max-width: 600px) {
   nav {
@@ -474,42 +454,14 @@ nav .logo {
     letter-spacing: 1px;
   }
   .home-information {
-    gap: 0.1;
-    margin: 0.5rem 0;
     overflow-y: hidden;
     height: 100vh;
   }
-  .home-information .img-card {
-    gap: 1.2rem;
-  }
-  .home-information .img-card h3 {
-    font-size: 0.6rem;
-    margin: 0.2rem 0;
-  }
-  .prod1,
-  .prod2 {
-    transform: translateY(10vh);
-  }
-  .prod3,
-  .prod4 {
-    transform: translateY(-8vh);
-  }
-
-  .home-information .img-card .img {
-    height: 40vh;
-    width: 40vw;
-  }
-  .home-information .img-card .img img {
-    height: 40vh;
-    width: 40vw;
-  }
-  #img1,
-  #img2 {
-    transform: translateY(8vh);
-  }
-  #img3,
-  #img4 {
-    transform: translateY(-8vh);
+  .home-information h2{
+    font-size: 20vw;
+    width: 90vw;
+    margin: 0 1rem;
+    top: 25%
   }
   .home-services h2 {
     font-size: 1.5rem;
@@ -633,25 +585,11 @@ nav .logo {
     letter-spacing: 1px;
   }
   .home-information {
-    gap: 0.2;
-    margin: 0.3rem 0;
-    padding: 0.6rem 0;
     overflow-y: hidden;
-    height: 100vh;
   }
-  .home-information .img-card {
-    gap: 1.6rem;
-  }
-  .home-information .img-card h3 {
-    font-size: 1rem;
-    margin: 0.1rem 0;
-  }
-  .prod1,.prod2{
-    transform: translate(1rem, -2rem);
-  }
-  .prod3,
-  .prod4 {
-    transform: translate(1rem,-13vh);
+  .home-information h2{
+    top: 20%;
+    font-size: 20vw;
   }
   .home-services h2 {
     font-size: 2rem;

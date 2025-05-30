@@ -4,8 +4,8 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link, redirect } from "react-router-dom";
 import { Power4 } from "gsap/gsap-core";
+import Cylinder from "../components/Cylinder";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 const Home = () => {
   const homeRef = useRef();
@@ -97,8 +97,8 @@ const Home = () => {
       });
 
       gsap.from(aboutRef.current.querySelector(".home-about-item img"), {
-        opacity: 0.4,
-        scale: 0.4,
+        opacity: 0,
+        scale: 0,
         rotate: 45,
         duration: 1,
         scrollTrigger: {
@@ -146,59 +146,7 @@ const Home = () => {
     { scope: aboutRef }
   );
 
-  useEffect(() => {
-    const img1 = infoRef.current.querySelector("#img1");
-    const img2 = infoRef.current.querySelector("#img2");
-    const img3 = infoRef.current.querySelector("#img3");
-    const img4 = infoRef.current.querySelector("#img4");
-
-    const handleEnter1 = () => setProd1(true);
-    const handleLeave1 = () => setProd1(false);
-    const handleEnter2 = () => setProd2(true);
-    const handleLeave2 = () => setProd2(false);
-    const handleEnter3 = () => setProd3(true);
-    const handleLeave3 = () => setProd3(false);
-    const handleEnter4 = () => setProd4(true);
-    const handleLeave4 = () => setProd4(false);
-
-    img1.addEventListener("mouseenter", handleEnter1);
-    img1.addEventListener("mouseleave", handleLeave1);
-    img2.addEventListener("mouseenter", handleEnter2);
-    img2.addEventListener("mouseleave", handleLeave2);
-    img3.addEventListener("mouseenter", handleEnter3);
-    img3.addEventListener("mouseleave", handleLeave3);
-    img4.addEventListener("mouseenter", handleEnter4);
-    img4.addEventListener("mouseleave", handleLeave4);
-
-    return () => {
-      img1.removeEventListener("mouseenter", handleEnter1);
-      img1.removeEventListener("mouseleave", handleLeave1);
-      img2.removeEventListener("mouseenter", handleEnter2);
-      img2.removeEventListener("mouseleave", handleLeave2);
-      img3.removeEventListener("mouseenter", handleEnter3);
-      img3.removeEventListener("mouseleave", handleLeave3);
-      img4.removeEventListener("mouseenter", handleEnter4);
-      img4.removeEventListener("mouseleave", handleLeave4);
-    };
-  }, []);
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (prod1 && document.querySelector(".prod1")) {
-        gsap.from(".prod1", { y: "20px", opacity: 0, duration: 0.8 });
-      }
-      if (prod2 && document.querySelector(".prod2")) {
-        gsap.from(".prod2", { y: "20px", opacity: 0, duration: 0.8 });
-      }
-      if (prod3 && document.querySelector(".prod3")) {
-        gsap.from(".prod3", { y: "20px", opacity: 0, duration: 0.8 });
-      }
-      if (prod4 && document.querySelector(".prod4")) {
-        gsap.from(".prod4", { y: "20px", opacity: 0, duration: 0.8 });
-      }
-    }, infoRef);
-
-    return () => ctx.revert();
-  }, [prod1, prod2, prod3, prod4]);
+  
 
   return (
     <>
@@ -216,54 +164,8 @@ const Home = () => {
         <div className="follower">Scroll &#8595;</div>
       </div>
       <div ref={infoRef} className="home-information">
-        <div className="img-card">
-          <div className="img-card-child">
-            <div className="img" id="img1">
-              <img
-                src="https://plus.unsplash.com/premium_photo-1675186939926-ea6bf907a370?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2FyYm9ufGVufDB8fDB8fHww"
-                alt="carbon"
-              />
-            </div>
-            {prod1 ? (
-              <h3 className="prod1">Decentralised Carbon Tracker</h3>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="img-card-child">
-            <div className="img" id="img2">
-              <img
-                src="https://images.unsplash.com/photo-1666932521085-447127f3dcff?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fENsb3RoaW5nJTIwYmxhY2slMjBhZXN0aGV0aWMlMjBmb3IlMjBlY29tbWVyY2V8ZW58MHx8MHx8fDA%3D"
-                alt="E-commerce"
-              />
-            </div>
-            {prod2 ? <h3 className="prod2">Luxora - A clothing brand</h3> : ""}
-          </div>
-        </div>
-        <div className="img-card">
-          <div className="img-card-child">
-            <div className="img" id="img3">
-              <img
-                src="https://images.unsplash.com/photo-1669461028866-84765a42b26a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjB0b3VyaXN0JTIwYWVzdGhldGljfGVufDB8fDB8fHww"
-                alt="tourism"
-              />
-            </div>
-            {prod3 ? (
-              <h3 className="prod3">Tourism guide platform</h3>
-            ) : (
-              <h3></h3>
-            )}
-          </div>
-          <div className="img-card-child">
-            <div className="img" id="img4">
-              <img
-                src="https://images.unsplash.com/photo-1707683460791-bd3e5faeaffd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uZmVzc2lvbiUyMGJsYWNrJTIwYWVzdGhldGljfGVufDB8fDB8fHww"
-                alt="confession"
-              />
-            </div>
-            {prod4 ? <h3 className="prod4">Confession Platform</h3> : ""}
-          </div>
-        </div>
+      <h2>My Projects</h2>
+      <Cylinder></Cylinder>
       </div>
       <div ref={skillRef} className="home-services">
         <h2>My Skills</h2>
