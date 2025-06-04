@@ -9,9 +9,6 @@ const Scene = () => {
   window.addEventListener("resize",()=>{
     setAspect(window.innerWidth/window.innerHeight)
   })
-  useEffect(()=>{
-    console.log(aspect);
-  },[aspect])
   useFrame((state, delta) => {
     cyl.current.rotation.y += delta * 0.5; // slower rotation
   });
