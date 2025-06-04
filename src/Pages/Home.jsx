@@ -253,7 +253,12 @@ const Home = () => {
           Questions
         </h1>
         <div className="home-Faqs-questions">
-          <div className="home-Faqs-qContainer" onClick={() => setQ1(!q1)}>
+          <div className="home-Faqs-qContainer" onClick={() => {
+            setQ1(!q1);
+            setQ2(false);
+            setQ3(false);
+            setQ4(false);
+            }}>
             <div className="home-faq-container">
               <h3>What Technologies have you learned so far?</h3>
               <h3 className="sign">{q1 ? "-" : "+"}</h3>
@@ -266,7 +271,12 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="home-Faqs-qContainer" onClick={() => setQ2(!q2)}>
+          <div className="home-Faqs-qContainer" onClick={() => {
+            setQ1(false);
+            setQ2(!q2);
+            setQ3(false);
+            setQ4(false);
+            }}>
             <div className="home-faq-container">
               <h3>Did you build this Portfolio Website from Scratch?</h3>
               <h3 className="sign">{q2 ? "-" : "+"}</h3>
@@ -279,7 +289,12 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="home-Faqs-qContainer" onClick={() => setQ3(!q3)}>
+          <div className="home-Faqs-qContainer" onClick={() => {
+            setQ1(false);
+            setQ2(false);
+            setQ3(!q3);
+            setQ4(false);
+            }}>
             <div className="home-faq-container">
               <h3>What kind of Projects are you currently working on?</h3>
               <h3 className="sign">{q3 ? "-" : "+"}</h3>
@@ -293,7 +308,12 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="home-Faqs-qContainer" onClick={() => setQ4(!q4)}>
+          <div className="home-Faqs-qContainer" onClick={() => {
+            setQ1(false);
+            setQ2(false);
+            setQ3(false);
+            setQ4(!q4);
+            }}>
             <div className="home-faq-container">
               <h3>Are you open to freelance or collaborative work?</h3>
               <h3 className="sign">{q4 ? "-" : "+"}</h3>
