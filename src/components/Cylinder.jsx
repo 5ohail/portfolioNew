@@ -7,7 +7,6 @@ const Cylinder = () => {
     <div className="cylinder">
       
        <Canvas camera={{fov: 30 ,position: [0, 0, 5]}}>
-        <OrbitControls enableZoom={false}/>
       <ambientLight/>
      <Scene></Scene>
     </Canvas>
