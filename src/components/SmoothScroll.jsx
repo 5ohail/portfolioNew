@@ -11,7 +11,6 @@ const SmoothScroll = ({ children }) => {
     if (!container) return;
 
     // Set body height for scrollbar, based on container's scrollHeight
-    document.body.style.height = `${container.scrollHeight}px`;
     const aspectRatio = window.innerWidth / window.innerHeight;
     const height = aspectRatio < 1 ? "500vh" : "600vh";
     // Fix the container so it covers viewport and can be translated
