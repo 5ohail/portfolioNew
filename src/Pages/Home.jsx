@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Power4 } from "gsap/gsap-core";
 import Cylinder from "../components/Cylinder";
+
 gsap.registerPlugin(SplitText, ScrollTrigger);
 const Home = () => {
   const homeRef = useRef();
@@ -13,6 +13,7 @@ const Home = () => {
   const aboutRef = useRef();
   const skillRef = useRef();
   const contRef = useRef();
+  const scrollRef = useRef();
   const [prod1, setProd1] = useState(false);
   const [prod2, setProd2] = useState(false);
   const [prod3, setProd3] = useState(false);
@@ -30,7 +31,6 @@ const Home = () => {
 
       const nameEl = homeRef.current?.querySelector(".name");
       const follower = homeRef.current?.querySelector(".follower");
-      console.log(follower);
 
       const split = new SplitText(nameEl, { type: "chars" });
 
@@ -82,7 +82,6 @@ const Home = () => {
 
   useGSAP(
     () => {
-      console.log(aboutRef.current);
       if (!aboutRef.current) return;
 
       const tags = aboutRef.current.querySelector(".home-about-resume div");
@@ -107,6 +106,7 @@ const Home = () => {
           toggleActions: "play none none reverse",
         },
       });
+
       gsap.from(split.lines, {
         y: 40,
         opacity: 0,
@@ -136,20 +136,17 @@ const Home = () => {
       tags.addEventListener("mouseleave", mouseLeaveAnim);
 
       return () => {
-        
-          tags.removeEventListener("mouseenter", mouseEnterAnim);
-          tags.removeEventListener("mouseleave", mouseLeaveAnim);
+        tags.removeEventListener("mouseenter", mouseEnterAnim);
+        tags.removeEventListener("mouseleave", mouseLeaveAnim);
         ScrollTrigger.getAll().forEach((t) => t.kill());
         split.revert();
       };
     },
     { scope: aboutRef }
   );
-
   
 
-  return (
-    <>
+  return (<div>
       <Navbar scrollTo={{ aboutRef, contRef, homeRef, infoRef, skillRef }} />
       <div ref={homeRef} className="home">
         <div className="img-container">
@@ -164,8 +161,8 @@ const Home = () => {
         <div className="follower">Scroll &#8595;</div>
       </div>
       <div ref={infoRef} className="home-information">
-      <h2>My Projects</h2>
-      <Cylinder></Cylinder>
+        <h2>My Projects</h2>
+        <Cylinder></Cylinder>
       </div>
       <div ref={skillRef} className="home-services">
         <h2>My Skills</h2>
@@ -253,12 +250,15 @@ const Home = () => {
           Questions
         </h1>
         <div className="home-Faqs-questions">
-          <div className="home-Faqs-qContainer" onClick={() => {
-            setQ1(!q1);
-            setQ2(false);
-            setQ3(false);
-            setQ4(false);
-            }}>
+          <div
+            className="home-Faqs-qContainer"
+            onClick={() => {
+              setQ1(!q1);
+              setQ2(false);
+              setQ3(false);
+              setQ4(false);
+            }}
+          >
             <div className="home-faq-container">
               <h3>What Technologies have you learned so far?</h3>
               <h3 className="sign">{q1 ? "-" : "+"}</h3>
@@ -271,12 +271,15 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="home-Faqs-qContainer" onClick={() => {
-            setQ1(false);
-            setQ2(!q2);
-            setQ3(false);
-            setQ4(false);
-            }}>
+          <div
+            className="home-Faqs-qContainer"
+            onClick={() => {
+              setQ1(false);
+              setQ2(!q2);
+              setQ3(false);
+              setQ4(false);
+            }}
+          >
             <div className="home-faq-container">
               <h3>Did you build this Portfolio Website from Scratch?</h3>
               <h3 className="sign">{q2 ? "-" : "+"}</h3>
@@ -289,12 +292,15 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="home-Faqs-qContainer" onClick={() => {
-            setQ1(false);
-            setQ2(false);
-            setQ3(!q3);
-            setQ4(false);
-            }}>
+          <div
+            className="home-Faqs-qContainer"
+            onClick={() => {
+              setQ1(false);
+              setQ2(false);
+              setQ3(!q3);
+              setQ4(false);
+            }}
+          >
             <div className="home-faq-container">
               <h3>What kind of Projects are you currently working on?</h3>
               <h3 className="sign">{q3 ? "-" : "+"}</h3>
@@ -308,12 +314,15 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="home-Faqs-qContainer" onClick={() => {
-            setQ1(false);
-            setQ2(false);
-            setQ3(false);
-            setQ4(!q4);
-            }}>
+          <div
+            className="home-Faqs-qContainer"
+            onClick={() => {
+              setQ1(false);
+              setQ2(false);
+              setQ3(false);
+              setQ4(!q4);
+            }}
+          >
             <div className="home-faq-container">
               <h3>Are you open to freelance or collaborative work?</h3>
               <h3 className="sign">{q4 ? "-" : "+"}</h3>
@@ -335,7 +344,7 @@ const Home = () => {
           <p>&#xA9; 2025 Sohail Ansari. All rights reserved.</p>
         </div>
       </div>
-    </>
+      </div>
   );
 };
 
